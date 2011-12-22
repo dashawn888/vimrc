@@ -6,40 +6,41 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-set t_Co=256
-set expandtab
-set shiftwidth=2
-set softtabstop=2
 set autochdir                   " Make the lcd the current dir of file
-set showmode
-set showmatch
-set ruler
-set showcmd
-set incsearch
-set hlsearch                    " Highlight previous search results
-set backspace=2
-set scrolloff=3
-set scrolljump=20
-set lazyredraw                  " don't redraw screen as macros are running
-set ttyfast
-set nowrap
 set autowriteall                " Save unsaved buffers when switching to a different buffer.
+set backspace=2
 set colorcolumn=80
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
-set autochdir                   " always switch to the current file directory
+set expandtab
+set guioptions-=LlRrBmT
+set guioptions+=LlRrBmT
+set hlsearch                    " Highlight previous search results
+set incsearch
+set laststatus=2
+set lazyredraw                  " don't redraw screen as macros are running
 set list                        " we do what to show tabs, to ensure we get them out of my files
 set listchars=tab:>-,trail:-    " show tabs and trailing
-set nohidden                    " don't keep closed tabs, etc open in hidden buffers
-set statusline=%t%m%r\ %=0x\%02.2B\ %l,%v
-set laststatus=2
-set wildmenu wildmode=longest:full
-set guioptions+=LlRrBmT
-set guioptions-=LlRrBmT
 set mouse=a
 set nobackup
-set nowritebackup
+set nohidden                    " don't keep closed tabs, etc open in hidden buffers
 set noswapfile
+set nowrap
+set nowritebackup
+set pastetoggle=<F2>
+set ruler
+set scrolljump=20
+set scrolloff=3
+set shiftwidth=2
+set showcmd
+set showmatch
+set showmode
+set softtabstop=2
+set statusline=%t%m%r\ %=0x\%02.2B\ %l,%v
+set t_Co=256
+set ttyfast
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildmenu wildmode=longest:full
 
 " Ignore case if you search for all lower-case
 set ignorecase
