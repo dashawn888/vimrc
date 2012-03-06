@@ -6,10 +6,13 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-set autochdir                   " Make the lcd the current dir of file
+if version >= 703
+  set autochdir                   " Make the lcd the current dir of file
+  set colorcolumn=80
+endif
+
 set autowriteall                " Save unsaved buffers when switching to a different buffer.
 set backspace=2
-set colorcolumn=80
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
 set expandtab
@@ -73,7 +76,7 @@ nnoremap <silent> <F4> :TlistToggle<CR>
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 let Tlist_WinWidth=35
 
-map <Leader>ap :set paste<CR>mzgg/"""<CR>no# XXX START PUDB - Inserted automatically.  Use ,P to remove.<CR>import sys<CR>sys.path.append('/usr/local/lib/python2.6/dist-packages/pudb-2011.1-py2.6.egg')<CR>sys.path.append('/home/shlee/src/pudb-2011.3/')<CR>import pudb<CR># XXX END PUDB<C-[>:set nopaste<CR>:let @/ = ""<CR>`z
+map <Leader>ap :set paste<CR>mzgg/"""<CR>no# XXX START PUDB - Inserted automatically.  Use ,P to remove.<CR>import sys<CR>sys.path.append('/home/shlee/src/pudb-2011.3/')<CR>import pudb<CR># XXX END PUDB<C-[>:set nopaste<CR>:let @/ = ""<CR>`z
 map <Leader>rp mz/# XXX START PUDB<CR>d/# XXX END PUDB<CR>dd:let @/ = ""<CR>`z
 map <Leader>ab opudb.set_trace() # XXX PUDB BREAK<C-[>==
 map <Leader>rb mz:g/pudb.set_trace() # XXX PUDB BREAK/d<CR>`z
