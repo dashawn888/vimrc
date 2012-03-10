@@ -16,8 +16,8 @@ set backspace=2
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
 set expandtab
-set guioptions-=LlRrBmT
 set guioptions+=LlRrBmT
+set guioptions-=LlRrBmT
 set hlsearch                    " Highlight previous search results
 set incsearch
 set laststatus=2
@@ -76,12 +76,15 @@ nnoremap <silent> <F4> :TlistToggle<CR>
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 let Tlist_WinWidth=35
 
-map <Leader>ap :set paste<CR>mzgg/"""<CR>no# XXX START PUDB - Inserted automatically.  Use ,P to remove.<CR>import sys<CR>sys.path.append('/home/shlee/src/pudb-2011.3/')<CR>import pudb<CR># XXX END PUDB<C-[>:set nopaste<CR>:let @/ = ""<CR>`z
+map <Leader>ap :set paste<CR>mzggO# XXX START PUDB - Inserted automatically.  Use ,P to remove.<CR>import pudb<CR># XXX END PUDB<C-[>:set nopaste<CR>:let @/ = ""<CR>`z
 map <Leader>rp mz/# XXX START PUDB<CR>d/# XXX END PUDB<CR>dd:let @/ = ""<CR>`z
 map <Leader>ab opudb.set_trace() # XXX PUDB BREAK<C-[>==
 map <Leader>rb mz:g/pudb.set_trace() # XXX PUDB BREAK/d<CR>`z
 
 highlight default link TrailingWhitespace Error
+
+set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
+set errorformat=%f:%l:\ %m
 
 " Use F7 to toggle spellchecking
 function ToggleSpellCheck()
