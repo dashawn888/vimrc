@@ -16,7 +16,6 @@ sudo apt-get -y install python-django
 sudo apt-get -y install sqlite3
 sudo apt-get -y install python-pudb
 sudo apt-get -y install openssh-server
-sudo apt-get -y install samba
 
 mkdir ~/Source
 cd Source
