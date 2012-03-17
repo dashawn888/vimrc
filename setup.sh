@@ -41,6 +41,5 @@ read email
 
 git config --global user.name "${name}"
 git config --global user.email "${email}"
-git config --global diff.external meld
 git config --global diff.external ~/Source/vimrc/meld_diff.py
 git config --global core.editor "vim"
