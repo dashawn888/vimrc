@@ -1,22 +1,28 @@
 #!/bin/sh
 
-# Keep it simple so it's easy to comment out parts.
-sudo apt-get -y install git
-sudo apt-get -y install meld
-sudo apt-get -y install gitg
-sudo apt-get -y install ipython
-sudo apt-get -y install chromium-browser
-sudo apt-get -y install kodos
-sudo apt-get -y install tmux
-sudo apt-get -y install vim
-sudo apt-get -y install ubuntu-restricted-addons
-sudo apt-get -y install ubuntu-restricted-extras
-sudo apt-get -y install coffeescript
-sudo apt-get -y install python-django
-sudo apt-get -y install sqlite3
-sudo apt-get -y install python-pudb
-sudo apt-get -y install openssh-server
-sudo apt-get -y install bless
+# Keep a clean system.
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
+# Keep it single line so it's easy to comment out things.
+sudo apt-get -y install \
+  bless \
+  chromium-browser \
+  coffeescript \
+  git \
+  gitg \
+  ipython \
+  kodos \
+  meld \
+  openssh-server \
+  python-django \
+  python-pudb \
+  sqlite3 \
+  tmux \
+  ubuntu-restricted-addons \
+  ubuntu-restricted-extras \
+  vim \
+  wmii
 
 mkdir ~/Source
 cd Source

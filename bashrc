@@ -19,9 +19,3 @@ fi
 
 # Set 256 color mode.
 export TERM=screen-256color
-
-# Enter tmux if available.
-which tmux
-if [ $? -eq 0 ]; then
-  `which tmux`
-fi
