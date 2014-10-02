@@ -11,6 +11,7 @@ HISTSIZE=10000
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias less='less -R'
 
 # Enable programmable completion features.
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -19,3 +20,6 @@ fi
 
 # Set 256 color mode.
 export TERM=screen-256color
+
+# Add my home bin.
+export PATH=${PATH}:~/bin:/opt/go/bin
