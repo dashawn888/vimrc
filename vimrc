@@ -1,3 +1,8 @@
+" Early Conf
+set nocompatible
+let g:mapleader=","
+let mapleader=","
+
 if filereadable("$HOME/.local.vim")
   source $HOME/.local.vim
 endif
@@ -13,8 +18,6 @@ if !exists("*ToggleSpellCheck")
 endif
 map <F7> :call ToggleSpellCheck()<CR>
 
-set nocompatible
-
 
 if version >= 703
   set autochdir                   " Make the lcd the current dir of file
@@ -22,20 +25,17 @@ if version >= 703
 endif
 
 " Bind ctrl+hjkl to move around windows.
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+map <Left> <c-w>h
+map <Down> <c-w>j
+map <Up> <c-w>k
+map <Right> <c-w>l
 
 " Between tabs.
-map <c-p> <esc>:tabprevious<CR>
-map <c-n> <esc>:tabnext<CR>
-map <c-t> <esc>:tabnew<CR>
+map <Leader>tp :tabprevious<CR>
+map <Leader>tn :tabnext<CR>
+map <Leader>tc :tabnew<CR>
 
 " Clear search and other search settings.
-noremap <Leader>c :nohl<CR>
-vnoremap <Leader>c :nohl<CR>
-inoremap <Leader>c :nohl<CR>
 set hlsearch                    " Highlight previous search results
 set ignorecase
 set incsearch
@@ -45,8 +45,6 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-let g:mapleader=","
-let mapleader=","
 set autowriteall                " Save unsaved buffers when switching to a different buffer.
 
 " jj to stop typing in text.
@@ -103,11 +101,11 @@ syntax on
 
 " If we are using tmux add the extra cmds to get the cursor right.
 if exists("$TMUX")
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    let &t_SI = "\<ESC>Ptmux;\<ESC>\<ESC>]50;CursorShape=1\x7\<ESC>\\"
+    let &t_EI = "\<ESC>Ptmux;\<ESC>\<ESC>]50;CursorShape=0\x7\<ESC>\\"
 else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    let &t_SI = "\<ESC>]50;CursorShape=1\x7"
+    let &t_EI = "\<ESC>]50;CursorShape=0\x7"
 endif
 
 nmap <F3> :set list!<CR>
