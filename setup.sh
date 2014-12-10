@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# Keep a clean system.
-sudo apt-get -y update
-sudo apt-get -y upgrade
-
 # Keep it single line so it's easy to comment out things.
 sudo apt-get -y install \
   git \
@@ -23,3 +19,4 @@ ln -s ~/Source/vimrc/bashrc ~/.bashrc
 ln -s ~/Source/vimrc/vim ~/.vim
 ln -s ~/Source/vimrc/vimrc ~/.vimrc
 ln -s ~/Source/vimrc/tmux.conf ~/.tmux.conf
+ln -s ~/Source/vimrc/pylintrc ~/.pylintrc
