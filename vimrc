@@ -9,7 +9,9 @@ endif
 
 if !filereadable(expand("~/.vim/autoload/plug.vim"))
     silent !mkdir -p ~/.vim/autoload
-    silent !curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !mkdir -p ~/Source/github.com
+    silent !git clone https://github.com/junegunn/vim-plug.git ~/Source/github.com/vim-plug
+    silent !cp ~/Source/github.com/vim-plug/plug.vim ~/.vim/autoload/plug.vim
     source $HOME/.vim/autoload/plug.vim
     silent !echo "DATA" > ~/.vim/plug_new_install
 endif
@@ -131,3 +133,5 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " Put easymotion back to a single <Leader>
 map <Leader> <Plug>(easymotion-prefix)
+
+map <Leader>pb :CtrlPBuffer<CR>
