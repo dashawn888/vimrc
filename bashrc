@@ -22,4 +22,7 @@ fi
 export TERM=screen-256color
 
 # Add my home bin.
-export PATH=${PATH}:~/bin:/opt/go/bin
+export PATH=${PATH}:~/bin
+
+# Start powerline
+source /home/shawnl/.vim/plugged/powerline/powerline/bindings/bash/powerline.sh

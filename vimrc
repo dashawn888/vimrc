@@ -19,24 +19,28 @@ endif
 " Plugin setup
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
 Plug 'davidhalter/jedi-vim'
 Plug 'dhruvasagar/vim-vinegar'
+Plug 'fisadev/vim-isort'
+Plug 'gmarik/github-search.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'mattn/flappyvird-vim'
 Plug 'mhinz/vim-signify'
-Plug 'mhinz/vim-startify'
 Plug 'myusuf3/numbers.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'powerline/powerline'
+Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'vim-scripts/ctags.vim'
+Plug 'vim-scripts/savevers.vim'
+Plug 'vim-scripts/taglist.vim'
 Plug 'widox/vim-buffer-explorer-plugin'
 Plug 'yegappan/mru'
 call plug#end()
-
 
 if filereadable(expand("~/.vim/plug_new_install"))
     PlugInstall
@@ -56,7 +60,13 @@ endif
 map <F7> :call ToggleSpellCheck()<CR>
 
 set autochdir                   " Make the lcd the current dir of file
-set colorcolumn=80
+
+" Puthon specific.
+au FileType python setl colorcolumn=80
+
+" Java specific.
+au FileType java setl colorcolumn=120
+au FileType java setl tags+=~/.ctags
 
 " Bind ctrl+hjkl to move around windows.
 map <Left> <c-w>h
@@ -110,7 +120,8 @@ set showmode
 set smartcase
 set softtabstop=4
 set ttyfast
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.clean
+let g:netrw_list_hide="\.swp$,\.bak$,\.pyc$,\.class$,\.clean$"
 syntax on
 
 " If we are using tmux add the extra cmds to get the cursor right.
@@ -124,6 +135,8 @@ endif
 
 autocmd BufEnter *.py silent :!echo %:p > /tmp/.pycheck.py
 autocmd BufWrite *.py silent :!echo %:p > /tmp/.pycheck.py
+autocmd BufEnter *.java silent :!echo %:p > /tmp/.javacheck
+autocmd BufWrite *.java silent :!echo %:p > /tmp/.javacheck
 
 " Rainbow ([{ all on
 au VimEnter * RainbowParenthesesToggle
@@ -134,4 +147,22 @@ au Syntax * RainbowParenthesesLoadBraces
 " Put easymotion back to a single <Leader>
 map <Leader> <Plug>(easymotion-prefix)
 
-map <Leader>pb :CtrlPBuffer<CR>
+" Settings for vim-scripts/savevers.vim.
+silent !mkdir -p ~/.vim_backup
+set backup
+set patchmode=.clean
+let savevers_dirs = "~/.vim_backup"
+
+" Powerline setup.
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+
+" Autocomplete on.
+inoremap <c-x><c-]> <c-]>
+" Syntastic settings.
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
