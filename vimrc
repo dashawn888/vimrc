@@ -16,16 +16,23 @@ if !filereadable(expand("~/.vim/autoload/plug.vim"))
     silent !echo "DATA" > ~/.vim/plug_new_install
 endif
 
+let os = substitute(system('uname'), "\n", "", "")
+
 " Plugin setup
 call plug#begin('~/.vim/plugged')
+if os == "Linux"
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'vim-scripts/ctags.vim'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'vim-scripts/taglist.vim'
+endif
+Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
-Plug 'davidhalter/jedi-vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dhruvasagar/vim-vinegar'
 Plug 'fisadev/vim-isort'
 Plug 'gmarik/github-search.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'mattn/flappyvird-vim'
 Plug 'mhinz/vim-signify'
 Plug 'myusuf3/numbers.vim'
@@ -35,9 +42,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'vim-scripts/ctags.vim'
 Plug 'vim-scripts/savevers.vim'
-Plug 'vim-scripts/taglist.vim'
 Plug 'widox/vim-buffer-explorer-plugin'
 Plug 'yegappan/mru'
 call plug#end()
@@ -61,12 +66,14 @@ map <F7> :call ToggleSpellCheck()<CR>
 
 set autochdir                   " Make the lcd the current dir of file
 
-" Puthon specific.
+" Python specific.
 au FileType python setl colorcolumn=80
 
 " Java specific.
 au FileType java setl colorcolumn=120
-au FileType java setl tags+=~/.ctags
+if os == "Linux"
+    au FileType java setl tags+=~/.ctags
+endif
 
 " Bind ctrl+hjkl to move around windows.
 map <Left> <c-w>h
@@ -100,8 +107,8 @@ set autowriteall                " Save unsaved buffers when switching to a diffe
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
 set expandtab
-set guioptions-=LlRrBmT
 set guioptions+=LlRrBmT
+set guioptions-=LlRrBmT
 set lazyredraw                  " don't redraw screen as macros are running
 set list                        " we do what to show tabs, to ensure we get them out of my files
 set mouse=a
@@ -133,6 +140,11 @@ else
     let &t_EI = "\<ESC>]50;CursorShape=0\x7"
 endif
 
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
 autocmd BufEnter *.py silent :!echo %:p > /tmp/.pycheck.py
 autocmd BufWrite *.py silent :!echo %:p > /tmp/.pycheck.py
 autocmd BufEnter *.java silent :!echo %:p > /tmp/.javacheck
@@ -154,9 +166,9 @@ set patchmode=.clean
 let savevers_dirs = "~/.vim_backup"
 
 " Powerline setup.
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 
 
 " Autocomplete on.
@@ -166,3 +178,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let gctrlp_map = "<c-p>"
+let g:ctrlp_cmd = "CtrlP ~/Source"
