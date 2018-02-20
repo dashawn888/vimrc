@@ -20,12 +20,6 @@ let os = substitute(system('uname'), "\n", "", "")
 
 " Plugin setup
 call plug#begin('~/.vim/plugged')
-if os == "Linux"
-    Plug 'Valloric/YouCompleteMe'
-    Plug 'vim-scripts/ctags.vim'
-    Plug 'davidhalter/jedi-vim'
-    Plug 'vim-scripts/taglist.vim'
-endif
 Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
