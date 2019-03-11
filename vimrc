@@ -16,29 +16,19 @@ if !filereadable(expand("~/.vim/autoload/plug.vim"))
     silent !echo "DATA" > ~/.vim/plug_new_install
 endif
 
-let os = substitute(system('uname'), "\n", "", "")
-
 " Plugin setup
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dhruvasagar/vim-vinegar'
+Plug 'dhruvasagar/vim-vinegar' " - to open file view.
 Plug 'fisadev/vim-isort'
-Plug 'gmarik/github-search.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'mattn/flappyvird-vim'
-Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'       " git integration
 Plug 'myusuf3/numbers.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'powerline/powerline'
-Plug 'ryanoasis/vim-devicons'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'vim-scripts/savevers.vim'
 Plug 'widox/vim-buffer-explorer-plugin'
-Plug 'yegappan/mru'
 call plug#end()
 
 if filereadable(expand("~/.vim/plug_new_install"))
@@ -47,27 +37,11 @@ if filereadable(expand("~/.vim/plug_new_install"))
     q
 endif
 
-if !exists("*ToggleSpellCheck")
-    function ToggleSpellCheck()
-        if &spell
-            set nospell
-        else
-            set spell
-        endif
-    endfunction
-endif
-map <F7> :call ToggleSpellCheck()<CR>
-
-set autochdir                   " Make the lcd the current dir of file
-
 " Python specific.
 au FileType python setl colorcolumn=80
 
 " Java specific.
 au FileType java setl colorcolumn=120
-if os == "Linux"
-    au FileType java setl tags+=~/.ctags
-endif
 
 " Bind ctrl+hjkl to move around windows.
 map <Left> <c-w>h
@@ -98,6 +72,7 @@ set t_Co=256  " For a better colorscheme.
 filetype plugin indent on
 highlight default link TrailingWhitespace Error
 set autowriteall                " Save unsaved buffers when switching to a different buffer.
+set autochdir                   " Make the lcd the current dir of file
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
 set expandtab
@@ -158,20 +133,3 @@ silent !mkdir -p ~/.vim_backup
 set backup
 set patchmode=.clean
 let savevers_dirs = "~/.vim_backup"
-
-" Powerline setup.
-" python from powerline.vim import setup as powerline_setup
-" python powerline_setup()
-" python del powerline_setup
-
-
-" Autocomplete on.
-inoremap <c-x><c-]> <c-]>
-" Syntastic settings.
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let gctrlp_map = "<c-p>"
-let g:ctrlp_cmd = "CtrlP ~/Source"
