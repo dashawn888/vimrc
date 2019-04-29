@@ -100,15 +100,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*.clean
 let g:netrw_list_hide="\.swp$,\.bak$,\.pyc$,\.class$,\.clean$"
 syntax on
 
-" If we are using tmux add the extra cmds to get the cursor right.
-if exists("$TMUX")
-    let &t_SI = "\<ESC>Ptmux;\<ESC>\<ESC>]50;CursorShape=1\x7\<ESC>\\"
-    let &t_EI = "\<ESC>Ptmux;\<ESC>\<ESC>]50;CursorShape=0\x7\<ESC>\\"
-else
-    let &t_SI = "\<ESC>]50;CursorShape=1\x7"
-    let &t_EI = "\<ESC>]50;CursorShape=0\x7"
-endif
-
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
