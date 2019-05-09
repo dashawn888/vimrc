@@ -19,10 +19,12 @@ endif
 " Plugin setup
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
+Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 Plug 'dhruvasagar/vim-vinegar' " - to open file view.
 Plug 'fisadev/vim-isort'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'majutsushi/tagbar'       " For python class bar
 Plug 'mhinz/vim-signify'       " git integration
 Plug 'myusuf3/numbers.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -39,15 +41,16 @@ endif
 
 " Python specific.
 au FileType python setl colorcolumn=80
+au FileType python TagbarOpen
 
 " Java specific.
 au FileType java setl colorcolumn=120
 
-" Bind ctrl+hjkl to move around windows.
-map <Left> <c-w>h
-map <Down> <c-w>j
-map <Up> <c-w>k
-map <Right> <c-w>l
+" Bind arrows to python nav
+map <Left> [[z<cr>
+map <Down> ]mz<cr>
+map <Up> [mz<cr>
+map <Right> ]]z<cr>
 
 " Clear search and other search settings.
 set hlsearch                    " Highlight previous search results
@@ -75,6 +78,7 @@ set autowriteall                " Save unsaved buffers when switching to a diffe
 set autochdir                   " Make the lcd the current dir of file
 set cursorcolumn                " highlight the current column
 set cursorline                  " highlight current line
+set encoding=utf-8
 set expandtab
 set guioptions+=LlRrBmT
 set guioptions-=LlRrBmT
@@ -118,6 +122,10 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " Put easymotion back to a single <Leader>
 map <Leader> <Plug>(easymotion-prefix)
+
+" YouCompleteMe goto python definition
+map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <Leader>d :YcmCompleter GetDoc<CR>
 
 " Settings for vim-scripts/savevers.vim.
 silent !mkdir -p ~/.vim_backup
