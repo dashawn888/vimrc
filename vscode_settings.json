@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            }
+        }
+    ],
+    "files.exclude": {
+        ".venv": true,
+        "**/*.egg-info": true,
+        "uv.lock": true
+    },
+    "editor.rulers": [
+        120
+    ],
+    "files.trimTrailingWhitespace": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.trimTrailingWhitespace": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.persistAllIndices": false,
+    "python.analysis.typeCheckingMode": "standard",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "workbench.editor.showTabs": "none",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.settings.applyToAllProfiles": []
+}
